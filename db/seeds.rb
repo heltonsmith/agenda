@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+Reason.create(name: "requerimiento")
+Reason.create(name: "reclamo")
+Reason.create(name: "consulta")

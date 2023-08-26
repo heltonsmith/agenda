@@ -1,0 +1,27 @@
+<%= form_with(model: call) do |form| %>
+  <% if call.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(call.errors.count, "error") %> prohibited this call from being saved:</h2>
+
+      <ul>
+        <% call.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :client_id, style: "display: block" %>
+    <%= form.select :client_id, Client.all.collect {|c| [c.name, c.id] } %>
+  </div>
+
+  <div>
+    <%= form.label :reason_id, style: "display: block" %>
+    <%= form.select :reason_id, Reason.all.collect {|c| [c.name, c.id] } %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

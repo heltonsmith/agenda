@@ -1,0 +1,46 @@
+
+<h1>Calls</h1>
+
+<%= form_with method: :get do |form| %>
+  <%= form.label :cadena, style: "display: block" %>
+  <%= form.text_field :cadena %>
+  <%= form.submit "Buscar!..." %>
+<% end %>
+
+<% if @calls.count > 0 %>
+
+<div id="calls">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Reason</th>
+        <th>Date</th>
+        <th>View</th>
+      </tr>
+    </thead>
+  <% @calls.each do |call| %>
+    <tbody>
+      <tr>
+        <td><%= call.user.email %></td>
+        <td><%= call.client.name %></td>
+        <td><%= call.reason.name %></td>
+        <td><%= call.created_at %></td>
+        <td><%= link_to "Ver detalle llamada", call %></td>
+      </tr>
+    </tbody>
+  <% end %>
+  </table>
+</div>
+
+<div class="text-center">
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</div>
+
+<% else %>
+  <h1>No hay resultados con esa cadena búsqueda</h1>
+<% end %>
+
+
+<%= link_to "New call", new_call_path %>
